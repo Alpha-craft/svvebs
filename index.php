@@ -108,16 +108,27 @@ if (mysqli_affected_rows($conn) > 0){
     <title>Svvebs</title>
 </head>
 
-<body onload="myfunc()">
+<body>
     <ul class="nav nav-pills sticky-top">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
+            <a class="nav-link mr-auto" data-toggle="pill" href="#cari">Search</a>
+        </li> -->
+        <li class="nav-item ">
             <a class="nav-link active" data-toggle="pill" href="#home">Home</a>
         </li>
-        <!-- <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#menu1">Search</a>
-            </li> -->
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="pill" href="#menu2">Upload</a>
+        <li class="nav-item ">
+            <a class="nav-link" data-toggle="pill" href="#upload">Upload</a>
+        </li>
+        <li class="nav-item ml-auto">
+            <form class="sticky-top" action="" method="post">
+                <div class="input-group mb-3 ">
+                    <div class="input-group-append">
+                        <button class="btn btn-danger" type="reset">clear</button>
+                        <button class="btn btn-success" type="submit" name="cari">Cari</button>
+                    </div>
+                    <input id="search" type="text" class="form-control" autofocus placeholder="Search.." name="keyword">
+                </div>
+            </form>
         </li>
     </ul>
 
@@ -126,17 +137,7 @@ if (mysqli_affected_rows($conn) > 0){
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane container active" id="home">
-                <div class="search fixed-bottom">
-                    <form class="sticky" action="" method="post">
-                        <div class="input-group mb-3 ">
-                            <input id="search" type="text" class="form-control" autofocus placeholder="Search.."
-                                name="keyword">
-                            <div class="input-group-append">
-                                <button class="btn btn-success" type="submit" name="cari">Cari</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+
                 <!-- <div class="kolom"> -->
                 <div class="card-columns ">
                     <?php foreach ($waipu as $wife) :?>
@@ -163,11 +164,12 @@ if (mysqli_affected_rows($conn) > 0){
 
 
             </div>
-            <!-- <div class="tab-pane container fade" id="menu1">
-                search
 
+            <!-- <div class="tab-pane container fade" id="cari">
+                
             </div> -->
-            <div class="tab-pane container fade" id="menu2">
+
+            <div class="tab-pane container fade" id="upload">
                 <div class="relativ">
                     <!-- Upload -->
                     <form action="" method="post" enctype="multipart/form-data">

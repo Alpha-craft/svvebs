@@ -9,28 +9,26 @@ fileInput.addEventListener('change', e => {
     reader.readAsDataURL(f);
 });
 
-function focus(id) {
-    element = document.getElementById(id);
-    if (element == id) {
-        element.style.background = "rgba(0, 0, 0, 0.7)"
+function myFunction() {
+    if (document.body.style.color == "#f8f8f8") {
+        let label = document.getElementById('label');
+        label.innerHTML = "light?"
+    } else {
+        label.innerHTML = "dark?"
     }
+    let element = document.body;
+    element.classList.toggle("dark-mode"); //class toggle
+    let card = document.getElementsByClassName('card')
+    for (var i = 0; i < card.length; i++) {
+        card[i].classList.toggle('dark-mode');
+    }
+    // card.classList.toggle('dark-mode');
 }
 
-// let gambar = document.querySelector('.image')
-// let ukuran = gambar.length;
-// gambar.addEventListener('mouseover', () => {
-//     // gambar.className = "spinner-grow text-muted"
-//     let div = document.createElement('div');
-//     div.className = "spinner-grow text-primary";
-//     gambar.appendChild(div);
-
-// })
-
-
-// function load(id) {
-//     element = document.getElementById(id);
-//     element.className = "spinner-grow text-primary";
-//     element.addEventListener('mouseout', () => {
-//         element.classList.remove("spinner-grow text-primary");
-//     })
-// }
+let search = document.getElementById('search');
+search.addEventListener('mouseover', () => {
+    search.style.width = '100% !important'
+});
+search.addEventListener('mouseout', () => {
+    search.style.width = "10% !important";
+})
