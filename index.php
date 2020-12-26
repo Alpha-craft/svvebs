@@ -157,7 +157,7 @@ if (mysqli_affected_rows($conn) > 0){
                             </div>
                         </div>
                     </div>
-                    <?php endforeach ?>
+                    <?php endforeach; ?>
                 </div>
                 <!-- </div> -->
 
