@@ -104,8 +104,9 @@ if (mysqli_affected_rows($conn) > 0){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
     <link rel="stylesheet" href="css/style.css">
 
     <title>Svvebs</title>
@@ -117,21 +118,26 @@ if (mysqli_affected_rows($conn) > 0){
             <a class="nav-link mr-auto" data-toggle="pill" href="#cari">Search</a>
         </li> -->
         <li class="nav-item ">
-            <a class="nav-link active" data-toggle="pill" href="#home">Home</a>
+            <a class="nav-link active" data-toggle="pill" href="#home">Home <i class="las la-home"></i></a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link" data-toggle="pill" href="#upload">Upload</a>
+            <a class="nav-link" data-toggle="pill" href="#upload">Upload <i class="las la-upload"></i></a>
         </li>
         <li class="nav-item ml-auto">
             <form class="sticky-top" action="" method="post">
                 <div class="input-group mb-3 ">
-                    <div class="input-group-append">
-                        <button class="btn btn-danger" type="reset">clear</button>
-                        <button class="btn btn-success" type="submit" name="cari">Cari</button>
-                    </div>
                     <input id="search" type="text" class="form-control" autofocus placeholder="Search.." name="keyword">
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="submit" name="cari"><i class="las la-search"></i></button>
+                        <button class="btn btn-danger" type="reset"><i class="las la-times"></i></button>
+                    </div>
                 </div>
             </form>
+        </li>
+        <li class="nav-item">
+            <div onclick="mode()" class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="switch1">
+                <label class="custom-control-label" for="switch1"></label>
         </li>
     </ul>
 
@@ -142,6 +148,8 @@ if (mysqli_affected_rows($conn) > 0){
             <div class="tab-pane container active" id="home">
 
                 <div class="card-columns ">
+                    <!-- <div class="baris"> -->
+                    <!-- <div class="kolom"> -->
                     <?php foreach ($waipu as $wife) :?>
                     <div class="image">
                         <div class="card">
@@ -161,8 +169,9 @@ if (mysqli_affected_rows($conn) > 0){
                         </div>
                     </div>
                     <?php endforeach; ?>
+                    <!-- </div> -->
+                    <!-- </div> -->
                 </div>
-                <!-- </div> -->
 
 
             </div>
@@ -183,7 +192,7 @@ if (mysqli_affected_rows($conn) > 0){
                         </div>
 
                         <div class="custom-file">
-                            <input class="custom-file-input" type="file" name="file" id="gambar" required>
+                            <input class="custom-file-input " type="file" name="file" id="gambar" required>
                             <label class="custom-file-label" for="gambar">Pilih Foto</label>
                         </div>
                         <div class="clear"></div>
@@ -201,7 +210,7 @@ if (mysqli_affected_rows($conn) > 0){
 
 
 
-    <script src=" script/script.js"></script>
+    <script type="text/javascript" src="script/script.js"></script>
 </body>
 
 </html>

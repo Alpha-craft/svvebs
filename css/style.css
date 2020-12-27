@@ -6,79 +6,74 @@
             mengatur jarak antar kolom
             height: 100%;
         } */
-            /* .card-columns {
-            column-count: 2;
-            column-gap: 1.25rem;
-            orphans: 1;
-            widows: 1;
-        } */
+            .card-columns {
+                -webkit-column-count: 1;
+                -moz-column-count: 1;
+                column-count: 1;
+            }
         }
         
         @media screen and (min-width: 576px) {
-            /* .kolom {
-            column-count: 2;
-            menentukan jumlah kolom 
-            column-gap: 1%;
-            mengatur jarak antar kolom 
-            height: 100%;
-        } */
-            /* .card-columns {
-            column-count: 2 !important;
-            column-gap: 1.25rem;
-            orphans: 1;
-            widows: 1;
-        } */
+            .kolom {
+                column-count: 2;
+                /* menentukan jumlah kolom  */
+                column-gap: 1%;
+                /* mengatur jarak antar kolom  */
+                height: 100%;
+            }
+            .card-columns {
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                column-count: 2;
+            }
         }
         
         @media screen and (min-width: 768px) {
-            /* .kolom {
-            column-count: 2;
-            menentukan jumlah kolom 
-            column-gap: 1%;
-            mengatur jarak antar kolom
-            orphans: 1;
-            widows: 1;
-        } */
-            /* .card-columns {
-            column-count: 2 !important;
-            column-gap: 1.25rem;
-            orphans: 1;
-            widows: 1;
-        } */
+            .kolom {
+                column-count: 2;
+                /* menentukan jumlah kolom  */
+                column-gap: 1%;
+                /* mengatur jarak antar kolom */
+                orphans: 1;
+                widows: 1;
+            }
+            .card-columns {
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                column-count: 2;
+            }
         }
         
         @media screen and (min-width: 992px) {
-            /* .kolom {
-            column-count: 3;
-            menentukan jumlah kolom 
-            column-gap: 1%;
-            mengatur jarak antar kolom height: auto;
-            orphans: 1;
-            widows: 1;
-        } */
-            /* .card-columns {
-            column-count: 4;
-            column-gap: 1.25rem;
-            orphans: 1;
-            widows: 1;
-        } */
+            .kolom {
+                column-count: 3;
+                /* menentukan jumlah kolom  */
+                column-gap: 1%;
+                /* mengatur jarak antar kolom  */
+                orphans: 1;
+                widows: 1;
+            }
+            .card-columns {
+                -webkit-column-count: 3;
+                -moz-column-count: 3;
+                column-count: 3;
+            }
         }
         
-        @media screen and (min-width: 1200px) {
-            /* .kolom {
-            column-count: 5 !important;
-            menentukan jumlah kolom 
-            column-gap: 1.25rem;
-            mengatur jarak antar kolom 
-            orphans: 1;
-            widows: 1;
-        } */
-            /* .card-columns {
-            column-count: 4;
-            column-gap: 1.25rem;
-            orphans: 1;
-            widows: 1;
-        } */
+        @media (min-width: 1200px) {
+            .kolom {
+                column-count: 4 !important;
+                /* menentukan jumlah kolom  */
+                column-gap: 1.25rem;
+                /* mengatur jarak antar kolom  */
+                orphans: 1;
+                widows: 1;
+            }
+            .card-columns {
+                -webkit-column-count: 4;
+                -moz-column-count: 4;
+                column-count: 4;
+            }
         }
         
         body {
@@ -134,4 +129,33 @@
         .dark-mode {
             background-color: black;
             color: white !important;
+        }
+        
+        .baris {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 4px;
+        }
+        
+        .kolom {
+            flex: 100%;
+            max-width: 100%;
+            padding: 0 4px;
+        }
+        
+        .input-group {
+            border-radius: 30px !important;
+        }
+        
+        .nav-item .input-group .btn {
+            border-radius: 50% !important;
+        }
+        
+        .nav-item .input-group .form-control {
+            border-radius: 30px;
+            width: 10%;
+        }
+        
+        .nav-item .input-group .form-control:hover {
+            width: 50%;
         }

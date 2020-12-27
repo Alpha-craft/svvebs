@@ -32,6 +32,11 @@ search.addEventListener('mouseover', () => {
 search.addEventListener('mouseout', () => {
     search.style.width = "10% !important";
 });
+
+function mode() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+}
 // Swal.fire({
 //     position: 'top-end',
 //     icon: 'info',
