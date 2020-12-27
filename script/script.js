@@ -31,4 +31,29 @@ search.addEventListener('mouseover', () => {
 });
 search.addEventListener('mouseout', () => {
     search.style.width = "10% !important";
-})
+});
+// Swal.fire({
+//     position: 'top-end',
+//     icon: 'info',
+//     title: 'Selamat datang di Svvebs,Svvebs adalah website untuk Berbagi karya,Selamat menikmati semoga anda dapat terinspirasi dan juga menginspirasi pengguna lain melalui karya anda ',
+//     showConfirmButton: false,
+//     timer: 4000
+// })
+function kirim() {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    Toast.fire({
+        icon: 'success',
+        title: 'Uploaded'
+    })
+};

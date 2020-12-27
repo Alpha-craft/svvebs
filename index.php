@@ -104,7 +104,10 @@ if (mysqli_affected_rows($conn) > 0){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+
     <title>Svvebs</title>
 </head>
 
@@ -138,7 +141,6 @@ if (mysqli_affected_rows($conn) > 0){
         <div class="tab-content">
             <div class="tab-pane container active" id="home">
 
-                <!-- <div class="kolom"> -->
                 <div class="card-columns ">
                     <?php foreach ($waipu as $wife) :?>
                     <div class="image">
@@ -179,33 +181,27 @@ if (mysqli_affected_rows($conn) > 0){
                             <label for="caption">Caption:</label>
                             <input type="text" class="form-control" name="caption" id="caption">
                         </div>
-                        <div class="clear"></div>
+
                         <div class="custom-file">
                             <input class="custom-file-input" type="file" name="file" id="gambar" required>
                             <label class="custom-file-label" for="gambar">Pilih Foto</label>
                         </div>
                         <div class="clear"></div>
-                        <button onclick="berhasil()" class="btn btn-primary" type="submit"
-                            name="upload">Upload!</button>
+                        <button onclick="kirim()" class="btn btn-primary" type="submit" name="upload">Upload!</button>
                         <img style="width:50%;height:auto;margin:auto;display:block;" class="img" id="img" src=""
-                            accept="image/*    alt="">
+                            accept="image/*    ">
                     </form>
+
                 </div>
             </div>
         </div>
 
     </div>
 
+
+
+
     <script src=" script/script.js"></script>
-                        <script>
-                        // function berhasil() {
-                        //     Swal.fire(
-                        //         'Success',
-                        //         'Gambar Berhasil di Upload',
-                        //         'success'
-                        //     )
-                        // }
-                        </script>
 </body>
 
 </html>
