@@ -1,0 +1,17 @@
+body {
+    background: #9ab3f5 !important;
+}
+
+.box {
+    background: #f8f8f8 !important;
+    margin: 15%;
+    display: block;
+    border: 4px lightskyblue;
+    border-style: groove;
+}
+
+.box .center {
+    padding: 2rem;
+    margin: auto;
+    display: block;
+}

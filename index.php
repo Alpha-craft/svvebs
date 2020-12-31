@@ -89,20 +89,7 @@ if (isset($_POST['upload'])){
     sleep(2);
     header("Location:index.php");
 }
-// if (isset($_POST["upload"])){
 
-// }
-// if (!isset($_POST["cari"])){
-//     echo 
-//     "
-//     <script>
-//     function hampus() {
-//         let search = document.getElementById('search');
-//         search.value = null;
-//     }
-//     </script>
-//     ";
-// }
 
 ?>
 <!DOCTYPE html>
@@ -138,9 +125,12 @@ if (isset($_POST['upload'])){
         <li class="nav-item ">
             <a class="nav-link" data-toggle="pill" href="#upload">Upload <i class="las la-upload"></i></a>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link" data-toggle="pill" href="#login">login<i class="las la-user"></i></a>
-        </li> -->
+        <?php if (isset($_SESSION["login"])): ?>
+        <?php $display = " block" ?>
+        <li style="display:<?= $display ?>" class="nav-item">
+            <a class="nav-link" href="logout.php">logout<i class="las la-user-times"></i></a>
+        </li>
+        <?php endif; ?>
         <li class="nav-item ml-auto">
             <form class="sticky-top" action="" method="post">
                 <div class="input-group mb-3 ">
@@ -168,7 +158,7 @@ if (isset($_POST['upload'])){
                 <div class="card-columns ">
                     <?php foreach ($waipu as $wife) :?>
                     <div class="image">
-                        <div class="card">
+                        <div data-toggle="tooltip" title="<?= $wife["nama"] ?>" class="card">
 
                             <a href="target.php?id=<?= $wife["id"] ?>">
                                 <!-- http://localhost/test/project/svvebs/ -->

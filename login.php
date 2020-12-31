@@ -35,6 +35,21 @@ if(isset($_POST["login"])){
             header("Location:index.php");
             exit;
         }
+        else{
+            echo "
+            <script src='https://cdn.jsdelivr.net/npm/promise-polyfill'></script>
+            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
+                <script>
+                alert('Password atau Username salah');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: '<a href>Why do I have this issue?</a>'
+                  })
+                </script>
+            ";
+        }
         
         
         
@@ -56,21 +71,43 @@ if(isset($_POST["login"])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <title>Login</title>
 </head>
 
 <body>
+    <div class="container">
+        <div class="box">
+            <div class="center">
+                <form action="" method="post">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="username">Username:</label>
+                            <input class="form-control" type="text" name="username" id="username">
+                        </div>
+                        <br>
+                        <div class="form-group col-md-12">
+                            <label for="password">Password:</label>
+                            <input class="form-control" type="password" name="password" id="password">
+                        </div>
+                        <br>
+                        <button class="btn btn-info col-md-12 col-sm-12 " type="submit" name="login">Login <i
+                                class="las la-sign-in-alt"></i></button>
+                    </div>
+                </form>
 
-    <form action="" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username">
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password">
-        <br>
-        <button type="submit" name="login">Login!</button>
-    </form>
-    <a href="register.php">Daftar?</a>
+                <h4><a href="register.php">Daftar<i class="las la-user-plus"></i></a></h4>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

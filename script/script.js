@@ -67,6 +67,11 @@ function kirim() {
 //     enableAutoReload: true // it will reload the new image when validating attributes changes
 // });
 // observer.observe();
+
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 progressively.init({
     delay: 50,
     throttle: 300,
