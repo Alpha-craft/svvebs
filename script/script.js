@@ -10,12 +10,6 @@ fileInput.addEventListener('change', e => {
 });
 
 function myFunction() {
-    if (document.body.style.color == "#f8f8f8") {
-        let label = document.getElementById('label');
-        label.innerHTML = "light?"
-    } else {
-        label.innerHTML = "dark?"
-    }
     let element = document.body;
     element.classList.toggle("dark-mode"); //class toggle
     let card = document.getElementsByClassName('card')
@@ -25,18 +19,13 @@ function myFunction() {
     // card.classList.toggle('dark-mode');
 }
 
-let search = document.getElementById('search');
-search.addEventListener('mouseover', () => {
-    search.style.width = '100% !important'
-});
-search.addEventListener('mouseout', () => {
-    search.style.width = "10% !important";
-});
-
-function mode() {
-    var element = document.body;
-    element.classList.toggle("dark-mode");
+function Scrolldown() {
+    window.scroll(0, 300);
 }
+
+window.onload = Scrolldown;
+
+
 // Swal.fire({
 //     position: 'top-end',
 //     icon: 'info',
@@ -49,7 +38,7 @@ function kirim() {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 3000,
+        timer: 2000,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -62,3 +51,31 @@ function kirim() {
         title: 'Uploaded'
     })
 };
+
+// lozad('.lozad', {
+//     load: function(el) {
+//         el.src = el.dataset.src;
+//         el.onload = function() {
+//             el.classList.add('fade')
+//         }
+//     }
+// }).observe()
+
+// const observer = lozad('.lozad', {
+//     rootMargin: '10px 0px', // syntax similar to that of CSS Margin
+//     threshold: 0.1, // ratio of element convergence
+//     enableAutoReload: true // it will reload the new image when validating attributes changes
+// });
+// observer.observe();
+progressively.init({
+    delay: 50,
+    throttle: 300,
+    smBreakpoint: 600,
+    onLoad: function(elem) {
+        console.log(elem);
+    },
+    onLoadComplete: function() {
+        console.log('All images have finished loading!');
+    }
+});
+progressively.render()

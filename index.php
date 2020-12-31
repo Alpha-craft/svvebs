@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "koneksi.php";
 $sql = 'SELECT * FROM waipu ORDER BY id DESC';
 $waipu = mysqli_query($conn,$sql);
@@ -18,8 +19,19 @@ if (isset($_POST["cari"])){
     $waipu = mysqli_query($conn,"SELECT * FROM waipu WHERE nama LIKE '%$keyword%' OR nama LIKE '%$caption%' "); //% berarti wild card 
     //menggunakan like agar keyword lebih fleksibel dan tidak harus sama persis dengan inputan user 
 }
-                
+
+
+
 if (isset($_POST['upload'])){
+    
+    if (!isset($_SESSION["login"])){ //cek sudah login atau belum
+        
+        header("Location:login.php");
+        exit;
+
+    }
+    
+
     $caption = $_POST["caption"];
     $nama = $_POST["nama"];
     $nama_file = $_FILES["file"]["name"];
@@ -45,22 +57,17 @@ if (isset($_POST['upload'])){
     move_uploaded_file($tmp_name,"pict/".$nama_file);
     $query = "INSERT INTO waipu VALUES (null,'$nama','$nama_file','$caption')";
     mysqli_query($conn,$query);
-    
-    header("Location:index.php");
-}
-if (isset($_POST["upload"])){
-$tukang_cek = mysqli_affected_rows($conn);
-if (mysqli_affected_rows($conn) > 0){
+    $tukang_cek = mysqli_affected_rows($conn);
+    if (mysqli_affected_rows($conn) > 0){
         echo "
-        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
         <script>
-        function berhasil() {
-            Swal.fire(
-                'Success',
-                'Gambar Berhasil di Upload',
-                'success'
+        
+        Swal.fire(
+            'Success',
+            'Gambar Berhasil di Upload',
+            'success'
             )
-        }
+            
         </script>
         ";
         // sleep(3);
@@ -73,13 +80,18 @@ if (mysqli_affected_rows($conn) > 0){
             icon: 'error',
             title: 'Oops...',
             text: 'Something went wrong!',
-          });
+        });
           </script>
         ";
-        echo "<br>";
         echo mysqli_error($conn);
     }
+
+    sleep(2);
+    header("Location:index.php");
 }
+// if (isset($_POST["upload"])){
+
+// }
 // if (!isset($_POST["cari"])){
 //     echo 
 //     "
@@ -108,6 +120,9 @@ if (mysqli_affected_rows($conn) > 0){
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
     <link rel="stylesheet" href="css/style.css">
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script> -->
+    <link rel="stylesheet" href="https://unpkg.com/progressively/dist/progressively.min.css">
+    <script src="https://unpkg.com/progressively/dist/progressively.min.js"></script>
 
     <title>Svvebs</title>
 </head>
@@ -123,6 +138,9 @@ if (mysqli_affected_rows($conn) > 0){
         <li class="nav-item ">
             <a class="nav-link" data-toggle="pill" href="#upload">Upload <i class="las la-upload"></i></a>
         </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#login">login<i class="las la-user"></i></a>
+        </li> -->
         <li class="nav-item ml-auto">
             <form class="sticky-top" action="" method="post">
                 <div class="input-group mb-3 ">
@@ -135,8 +153,8 @@ if (mysqli_affected_rows($conn) > 0){
             </form>
         </li>
         <li class="nav-item">
-            <div onclick="mode()" class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="switch1">
+            <div onclick="" class="custom-control custom-switch">
+                <input type="checkbox" onclick="myFunction()" class="custom-control-input" id="switch1">
                 <label class="custom-control-label" for="switch1"></label>
         </li>
     </ul>
@@ -148,18 +166,20 @@ if (mysqli_affected_rows($conn) > 0){
             <div class="tab-pane container active" id="home">
 
                 <div class="card-columns ">
-                    <!-- <div class="baris"> -->
-                    <!-- <div class="kolom"> -->
                     <?php foreach ($waipu as $wife) :?>
                     <div class="image">
                         <div class="card">
-                            <div onload="" class="load">
-                                <a href="target.php?id=<?= $wife["id"] ?>">
-                                    <img id="img<?= $wife['id']?>" class="loader" src="pict/<?php echo $wife['file'] ?>"
-                                        alt="<?= $wife["nama"] ?>">
-                                </a>
-                            </div>
-                            <div class="card-body">
+
+                            <a href="target.php?id=<?= $wife["id"] ?>">
+                                <!-- http://localhost/test/project/svvebs/ -->
+                                <figure class="progressive">
+                                    <img id="img<?= $wife['id']?>" class="progressive__img progressive--not-loaded"
+                                        data-progressive="pict/<?php echo $wife['file'] ?>"
+                                        data-progressive-sm="pict/<?php echo $wife['file'] ?>"
+                                        src="pict/<?php echo $wife['file'] ?>" alt="<?= $wife["nama"] ?>">
+                                </figure>
+                            </a>
+                            <div class="card-body ">
                                 <h4 href="#demo<?= $wife["id"]?>" data-toggle="collapse" class="card-title">
                                     <?= $wife["nama"] ?> </h4>
                                 <div id="demo<?= $wife["id"] ?>" class="collapse">
@@ -169,16 +189,26 @@ if (mysqli_affected_rows($conn) > 0){
                         </div>
                     </div>
                     <?php endforeach; ?>
-                    <!-- </div> -->
-                    <!-- </div> -->
                 </div>
 
 
             </div>
 
-            <!-- <div class="tab-pane container fade" id="cari">
-                
+
+            <!-- <div class="tab-pane container fade" id="login">
+                login
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+                        </div>
+                        <div class="col">
+                            <input type="password" class="form-control" placeholder="Enter password" name="pswd">
+                        </div>
+                    </div>
+                </form>
             </div> -->
+
 
             <div class="tab-pane container fade" id="upload">
                 <div class="relativ">
@@ -209,7 +239,8 @@ if (mysqli_affected_rows($conn) > 0){
 
 
 
-
+    <!-- <script src="https://raw.githubusercontent.com/w3c/IntersectionObserver/master/polyfill/intersection-observer.js">
+    </script> -->
     <script type="text/javascript" src="script/script.js"></script>
 </body>
 

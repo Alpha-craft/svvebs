@@ -1,0 +1,1 @@
+[link blur on load](https://github.com/thinker3197/progressively)
