@@ -122,11 +122,20 @@ if (isset($_POST['upload'])){
         <li class="nav-item ">
             <a class="nav-link active" data-toggle="pill" href="#home">Home <i class="las la-home"></i></a>
         </li>
-        <li class="nav-item ">
-            <a class="nav-link" data-toggle="pill" href="#upload">Upload <i class="las la-upload"></i></a>
+        <?php if (isset($_SESSION["login"])): ?>
+        <li style="display: none" class="nav-item">
+            <a class="nav-link" href="login.php">login <i class="las la-user"></i></a>
         </li>
+        <?php else: ?>
+        <li class="nav-item">
+            <a class="nav-link" href="login.php">login <i class="las la-user"></i></a>
+        </li>
+        <?php endif; ?>
         <?php if (isset($_SESSION["login"])): ?>
         <?php $display = " block" ?>
+        <li style="display:<?= $display ?>" class="nav-item ">
+            <a class="nav-link" data-toggle="pill" href="#upload">Upload <i class="las la-upload"></i></a>
+        </li>
         <li style="display:<?= $display ?>" class="nav-item">
             <a class="nav-link" href="logout.php">logout<i class="las la-user-times"></i></a>
         </li>
